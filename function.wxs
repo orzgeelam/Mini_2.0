@@ -1,5 +1,5 @@
 // 页面调用方法
-var Img_Url = 'http://images2.img.xilukeji.com';
+var Img_Url    = 'http://images2.img.xilukeji.com';
 module.exports = {
 	img_url          : img_url,
 	qiniu_url        : qiniu_url,
