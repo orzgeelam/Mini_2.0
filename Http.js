@@ -33,6 +33,7 @@ class Http {
             url: Verify_url(url),
             header: {
                 'content-type': 'application/json',
+                'openid': wx.getStorageSync('openid') || '',
             },
             data: data,
             success(res) {
@@ -74,6 +75,7 @@ class Http {
             url: Verify_url(url),
             header: {
                 'content-type': 'application/x-www-form-urlencoded',
+                'openid': wx.getStorageSync('openid') || '',
             },
             method: 'POST',
             data: data,
@@ -114,6 +116,7 @@ class Http {
             url: Verify_url(url),
             header: {
                 'content-type': 'application/x-www-form-urlencoded',
+                'openid': wx.getStorageSync('openid') || '',
             },
             method: 'POST',
             data: data,
@@ -134,6 +137,91 @@ class Http {
                 complete && complete(res);
             },
         });
+    }
+
+    /**
+     * 获取openid，sessionkey，unionid
+     * @param url
+     * @param success
+     */
+    Get_openid(url, success) {
+        var url = url || 'api/Mini/get_openid';
+        wx.login({
+            success: res => {
+                if (res.code) {
+                    _this.Get(url, {
+                        code: res.code,
+                    }, function(e) {
+                        if (e.code) {
+                            wx.setStorageSync('openid', e.openid);
+                            wx.setStorageSync('session_key', e.session_key);
+                            success && success(e);
+                        } else {
+                            console.log('获取失败！' + e.errMsg);
+                        }
+                    });
+                } else {
+                    console.log('登录失败！' + res.errMsg);
+                }
+            },
+        });
+    }
+
+    /**
+     * 获取fromID
+     * @param formid
+     * @returns {boolean}
+     */
+    saveFormId(formid) {
+        if (typeof formid == 'undefined' || !formid || formid == 'the formId is a mock one') {
+            return false;
+        }
+        _this.Post('api/Mini/saveFormId', {
+            formid: formid,
+            openid: openid,
+        }, function(res) {
+            console.log('formId', res);
+        }, function(res) {
+            console.log('接口调用失败', res);
+        })
+    }
+
+    /**
+     * 获取列表
+     * @param that object 获取列表页的页面对象
+     * @param url string Get请求地址
+     * @param data object 请求参数
+     * @param success function 回调方法
+     */
+    GetList(that, url, data, success) {
+        data = data || {};
+        data.page = that.data.page; // 获取当前页码
+        data.limit = that.data.limit; // 获取每页数量
+        if (!that.data.nothing && that.data.on_off) {
+            // 判断是否有数据，且开关是否打开
+            that.setData({
+                on_off: false,
+                none_show: false,
+            });
+            _this.Get(url, data, function(res) {
+                if (that.data.page == 1) {
+                    var list = [];
+                } else {
+                    var list = that.data.list;
+                }
+                list = list.concat(res.list);
+                var page = parseInt(that.data.page) + 1;
+                that.setData({
+                    list: list,
+                    page: page,
+                    total: res.total,
+                    nothing: res.nothing,
+                    none_show: true,
+                    on_off: true,
+                });
+                success && success(res);
+            });
+        }
     }
 }
 /**
