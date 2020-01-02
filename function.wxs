@@ -1,0 +1,185 @@
+// 页面调用方法
+var Img_Url = 'http://images2.img.xilukeji.com';
+module.exports = {
+	img_url          : img_url,
+	qiniu_url        : qiniu_url,
+	time_format      : time_format,
+	time_to_timestamp: time_to_timestamp,
+	date_to_week     : date_to_week,
+};
+
+// 判断并补充图像路径
+function img_url(url) {
+	url = url || '';
+	if (url) {
+		// 判断是否是完整http|https|ftp地址
+		if (url.substring(0, 7).toLowerCase() == "http://" || url.substring(0, 8).toLowerCase() == "https://") {
+			// 直接请求当前地址
+			return url;
+		} else {
+			// 自定义方法短链接,拼接app.js中设置的请求链接
+			return Img_Url + url;
+		}
+	} else {
+		return '/utils/MiniApp/images/loading-2.gif';
+	}
+}
+
+// 七牛图片处理
+function qiniu_url(url, type, size) {
+	url  = url || '';
+	type = type || '';
+	size = size || '';
+	if (url) {
+		// 判断是否是完整http|https|ftp地址
+		switch (type) {
+			case 'slim':
+				url += '?imageslim/imageMogr2/interlace/1';
+				break;
+			case 'size':
+				url += '?imageMogr2' + size;
+				break;
+			default:
+				break;
+		}
+		if (url.substring(0, 7).toLowerCase() == "http://" || url.substring(0, 8).toLowerCase() == "https://") {
+			// 直接请求当前地址
+			return url;
+		} else {
+			// 自定义方法短链接,拼接app.js中设置的请求链接
+			return Img_Url + url;
+		}
+	} else {
+		return '/utils/MiniApp/images/loading-2.gif';
+	}
+}
+
+/**
+ * 时间格式(年月日)
+ * @param timestamp 时间数据：时间戳、日期格式
+ * @param accuracy 处理结果精度：year(年),month(月),day(日),hour(小时),minute(分钟),second(秒),m-d(月日)
+ * @returns {string}
+ */
+function time_format(timestamp, accuracy = 'day') {
+	var time = timestamp || '';
+	// 判断是否有时间数据
+	if (!time) return '未设置时间数据';
+	// 判断时间数据格式并转化为时间戳
+	time       = getDate(time.replace('-', "/").replace('-', '/'));
+	var year   = time.getFullYear(),
+	    month  = parseInt(time.getMonth()) + 1,
+	    day    = time.getDay(),
+	    hour   = parseInt(time.getHours()) < 10 ? '0' + time.getHours().toString() : time.getHours(),
+	    minute = parseInt(time.getMinutes()) < 10 ? '0' + time.getMinutes().toString() : time.getMinutes(),
+	    second = parseInt(time.getSeconds()) < 10 ? '0' + time.getSeconds().toString() : time.getSeconds();
+	var result;
+	switch (accuracy) {
+		case 'year':
+			result = year + '年';
+			break;
+		case 'month':
+			result = year + '年' + month + '月';
+			break;
+		case 'day':
+			result = year + '年' + month + '月' + day + '日';
+			break;
+		case 'hour':
+			result = year + '年' + month + '月' + day + '日 ' + hour;
+			break;
+		case 'minute':
+			result = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute;
+			break;
+		case 'second':
+			result = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
+			break;
+		case 'm-d-h':
+			result = month + '月' + day + '日 ' + hour;
+			break;
+		case 'm-d-m':
+			result = month + '月' + day + '日 ' + hour + ':' + minute;
+			break;
+		case 'm-d-s':
+			result = month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
+			break;
+		default:
+			result = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
+			break;
+	}
+	return result;
+}
+
+/**
+ * 日期格式转化为时间戳
+ * @param time
+ * @returns {number}
+ */
+function time_to_timestamp(time) {
+	if (typeof time == 'number') {
+		var end = time;
+	} else {
+		return parseInt(getDate(time.replace('-', "/").replace('-', '/')).getTime() / 1000);
+	}
+}
+
+function date_to_week(date) {
+	var date = date || '';
+	date     = getDate(date.replace('-', "/").replace('-', '/')).getDay();
+	var week = '';
+	switch (date) {
+		case 0 :
+			week = '周日';
+			break;
+		case 1 :
+			week = '周一';
+			break;
+		case 2 :
+			week = '周二';
+			break;
+		case 3 :
+			week = '周三';
+			break;
+		case 4 :
+			week = '周四';
+			break;
+		case 5 :
+			week = '周五';
+			break;
+		case 6 :
+			week = '周六';
+			break;
+	}
+	return week;
+}
+
+// 时间格式（时差）
+function getTime2(timestamp, type = 1, isAbs = false) {
+	// var time = timestamp || '';
+	// if (!time) return ['0', '00', '00', '00'];
+	//
+	// if (typeof time == 'number') {
+	// 	var end = time;
+	// } else {
+	// 	//方法2：转换为1970/01/01 08:00:00
+	// 	// var end = parseInt((new Date(time.replace(/-/g, "/"))).getTime() / 1000);
+	// }
+	//
+	// // var now = parseInt((new Date()).getTime() / 1000);
+	//
+	// var diff = end - now;
+	// if (isAbs) diff = Math.abs(diff);
+	// if (diff < 0) return ['0', '00', '00', '00'];
+	// var d, h, i, s;
+	// d = parseInt(diff / 86400) || 0; diff = diff % 86400;
+	// h = parseInt(diff / 3600) || 0; diff = diff % 3600;
+	// i = parseInt(diff / 60) || 0; diff = diff % 60;
+	// s = parseInt(diff) || 0;
+	// switch (type) {
+	// 	case 2:
+	// 		h += d * 24;
+	// 		d = 0;
+	// 		return [d, h, i, s].map(formatTime);
+	// 		break;
+	// 	default:
+	// 		return [d, h, i, s];
+	// }
+}
