@@ -46,7 +46,7 @@ class Http {
                 }
             },
             fail(res) {
-                Model(res.msg, function() {
+                Model(res.msg, function () {
                     fail && fail(res);
                 });
             },
@@ -90,7 +90,7 @@ class Http {
                 }
             },
             fail(res) {
-                Common.Model(res.msg, function() {
+                Common.Model(res.msg, function () {
                     fail && fail(res);
                 });
             },
@@ -132,7 +132,7 @@ class Http {
                 }
             },
             fail(res) {
-                Common.Model(res.msg, function() {
+                Common.Model(res.msg, function () {
                     fail && fail(res);
                 });
             },
@@ -159,7 +159,7 @@ class Http {
                 if (res.code) {
                     _this.Get(url, {
                         code: res.code,
-                    }, function(e) {
+                    }, function (e) {
                         if (e.code) {
                             wx.setStorageSync('openid', e.openid);
                             wx.setStorageSync('session_key', e.session_key);
@@ -187,9 +187,9 @@ class Http {
         _this.Post('api/Mini/saveFormId', {
             formid: formid,
             openid: openid,
-        }, function(res) {
+        }, function (res) {
             console.log('formId', res);
-        }, function(res) {
+        }, function (res) {
             console.log('接口调用失败', res);
         });
     }
@@ -231,7 +231,7 @@ class Http {
                 on_off: false,
                 none_show: false,
             });
-            _this.Get(url, data, function(res) {
+            _this.Get(url, data, function (res) {
                 if (that.data.page == 1) {
                     var list = [];
                 } else {
@@ -309,9 +309,15 @@ function Normal_Dispose(code, msg) {
             break;
         case 88:
             // 默认返回
-            Common.Toast(msg, function() {
+            Common.Toast(msg, function () {
                 wx.navigateBack();
             });
+            return true;
+            break;
+        case '08':
+            Common.Model(msg,function(){
+                wx.navigateBack();
+            })
             return true;
             break;
         default:
