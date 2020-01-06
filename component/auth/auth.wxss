@@ -1,0 +1,155 @@
+.zz {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 888;
+}
+
+.containerc {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /**justify-content: space-between;**/
+    box-sizing: border-box;
+    font-family: 'PingFangSC-Regular',
+                 '-apple-system-font',
+                 'Microsoft YaHei',
+                 'Helvetica Neue',
+                 Helvetica,
+                 Arial,
+                 'sans-serif';
+    line-height: 1.5;
+}
+
+.assem_con {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10rpx;
+    width: 560rpx;
+    padding-top: 66rpx;
+    text-align: center;
+    z-index: 999;
+}
+
+.assem_con image {
+    width: 394rpx;
+    height: 226rpx;
+    display: block;
+    margin-left: 60rpx;
+    margin-top: 66rpx;
+    margin-bottom: 66rpx;
+}
+
+.assem_con .title {
+    font-size: 34rpx;
+    color: #101010;
+}
+
+.assem_con .sub_title {
+    font-size: 30rpx;
+    color: #898989;
+}
+
+.assem_btn view {
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 34rpx;
+}
+
+.assem_btn {
+    border-top: 1rpx solid #ccc;
+}
+
+.assem_btn view:nth-child(1) {
+    border-right: 1rpx solid #ccc;
+    color: #898989;
+}
+
+.assem_btn button {
+    color: #fe4a4a;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 34rpx;
+}
+
+.m-list-flex {
+    display: flex;
+    align-items: center;
+}
+
+.m-list-flex .m-cell-bd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: hidden;
+}
+
+image {
+    max-width: 100%;
+}
+
+.bind-tc {
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    background-color: #fff;
+    border-radius: 4rpx;
+    z-index: 999;
+    width: 540rpx;
+    padding-bottom: 56rpx;
+}
+
+.close-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 24rpx;
+    width: 36rpx;
+    height: 34rpx;
+}
+
+.close-img image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.bind-con {
+    font-size: 28rpx;
+    color: #333;
+    font-weight: bold;
+    line-height: 58rpx;
+    text-align: center;
+    padding-top: 58rpx;
+    padding-bottom: 40rpx;
+}
+
+.bind-btn {
+    background-color: #3ec945;
+    border-radius: 4rpx;
+    width: 440rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    margin: 0 auto;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+}
+
+.bind-btn image {
+    width: 54rpx;
+    height: 42rpx;
+    display: block;
+}
+
+.bind-btn view {
+    font-size: 32rpx;
+    color: #fff;
+    padding-left: 16rpx;
+}
