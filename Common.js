@@ -75,6 +75,10 @@ function In_array(stringToSearch, arrayToSearch) {
 
 /**
  * 验证手机正则
+ * @param mobile
+ * @param type
+ * @returns {boolean}
+ * @constructor
  */
 function Mobile(mobile, type) {
 	type = type || true;
@@ -91,6 +95,10 @@ function Mobile(mobile, type) {
 
 /**
  * 验证身份证号正则
+ * @param id
+ * @param type
+ * @returns {boolean}
+ * @constructor
  */
 function ID_number(id, type) {
 	type = type || true;
@@ -105,10 +113,27 @@ function ID_number(id, type) {
 	return true;
 }
 
+/**
+ * 判断是否为iPhoneX
+ * @returns {boolean}
+ * @constructor
+ */
+function Is_IpX(that) {
+	wx.getSystemInfo({
+		success(res) {
+			var model = res.model;
+			that.setData({
+				ipx: model.search('iPhone X') != -1,
+			});
+		},
+	});
+}
+
 module.exports = {
 	Model    : Model, // 对话框
 	Toast    : Toast, // 提示框
 	In_array : In_array,
 	ID_number: ID_number,
 	Mobile   : Mobile,
+	Is_IpX   : Is_IpX,
 };
