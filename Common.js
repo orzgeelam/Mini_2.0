@@ -83,7 +83,7 @@ function In_array(stringToSearch, arrayToSearch) {
 function Mobile(mobile, type) {
 	type = type || true;
 	if (type && !mobile) {
-		Common.Toast('请输入手机号码');
+		Toast('请输入手机号码');
 		return false;
 	}
 	if (!(/^(0|86|17951)?1[0-9]{10}$/.test(mobile))) {
@@ -103,7 +103,7 @@ function Mobile(mobile, type) {
 function ID_number(id, type) {
 	type = type || true;
 	if (type && !id) {
-		Common.Toast('请输入身份证号码');
+		Toast('请输入身份证号码');
 		return false;
 	}
 	if (!(/^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test(id))) {
