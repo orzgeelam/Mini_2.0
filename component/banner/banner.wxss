@@ -1,0 +1,6 @@
+/* Mini_2.0/component/banner/banner.wxss */
+/* 轮播图 */
+.swiper_main{width: 100%;height: 750rpx;display: block;position: relative}
+.swiper_main swiper{width: 100%;height: 100%;display: block}
+.swiper_main image{width: 100%;height: 100%;display: block}
+.swiper_num{font-size: 24rpx;color: #ffffff;background-color:rgba(0,0,0,0.2) ;line-height: 44rpx;border-radius: 22rpx;min-width: 80rpx;padding: 0 20rpx;box-sizing: border-box;position: absolute;right: 30rpx;bottom: 30rpx;}

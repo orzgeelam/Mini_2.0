@@ -1,0 +1,10 @@
+<!--Mini_2.0/component/banner/banner.wxml-->
+<wxs module="fun" src="../../function.wxs"></wxs>
+<view class="swiper_main">
+	<swiper circular autoplay duration="500" interval="5000" bindchange="swiperchange">
+		<swiper-item wx:for='{{images}}'>
+			<image src="{{fun.qiniu_url(item,'slim')}}" mode="aspectFill"></image>
+		</swiper-item>
+	</swiper>
+	<view class="swiper_num">{{current+1}}/{{images.length}}</view>
+</view>
