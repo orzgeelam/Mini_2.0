@@ -1,6 +1,6 @@
 <view wx:if="{{data.show && type=='list'}}">
     <view style="padding-top:200rpx" wx:if="{{data.none==0}}">
-        <image style="width:200rpx;height:200rpx;display:block;margin:0 auto" mode="aspectFit" src="../images/nothing.png"></image>
+        <image style="width:200rpx;height:200rpx;display:block;margin:0 auto" mode="aspectFit" src="../../images/nothing.png"></image>
         <view style="font-size:30rpx;padding:30rpx 0;color:#999;text-align:center">抱歉，暂无相关信息</view>
     </view>
     <view style="font-size:30rpx;padding:30rpx 0;color:#999;text-align:center" wx:if="{{data.none!=0 && data.nomore}}">已加载完毕

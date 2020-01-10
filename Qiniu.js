@@ -46,7 +46,7 @@ class Qiniu {
 					qiniuUploader.upload(filePath, function (e) {
 						if (typeof callback == "function") {
 							var result = {
-								url     : e.key,
+								url     : '/' +e.key,
 								full_url: _this.Img_Url + '/' + e.key,
 							};
 							callback(result);

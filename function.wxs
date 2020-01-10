@@ -21,7 +21,7 @@ function img_url(url) {
 			return Img_Url + url;
 		}
 	} else {
-		return '/utils/MiniApp/images/loading-2.gif';
+		return '/Mini_2.0/images/loading-2.gif';
 	}
 }
 
@@ -50,7 +50,7 @@ function qiniu_url(url, type, size) {
 			return Img_Url + url;
 		}
 	} else {
-		return '/utils/MiniApp/images/loading-2.gif';
+		return '/Mini_2.0/images/loading-2.gif';
 	}
 }
 
@@ -65,7 +65,12 @@ function time_format(timestamp, accuracy = 'day') {
 	// 判断是否有时间数据
 	if (!time) return '未设置时间数据';
 	// 判断时间数据格式并转化为时间戳
-	time       = getDate(time.replace('-', "/").replace('-', '/'));
+	if (typeof time == 'number') {
+		time = time * 1000;
+		time = getDate(time);
+	} else {
+		time = getDate(time.replace('-', "/").replace('-', '/'));
+	}
 	var year   = time.getFullYear(),
 	    month  = parseInt(time.getMonth()) + 1,
 	    day    = time.getDay(),
@@ -82,6 +87,9 @@ function time_format(timestamp, accuracy = 'day') {
 			break;
 		case 'day':
 			result = year + '年' + month + '月' + day + '日';
+			break;
+		case 'day_p':
+			result = year + '.' + month + '.' + day;
 			break;
 		case 'hour':
 			result = year + '年' + month + '月' + day + '日 ' + hour;
@@ -123,6 +131,9 @@ function time_to_timestamp(time) {
 
 function date_to_week(date) {
 	var date = date || '';
+	if (typeof date == 'number') {
+		date = date * 1000;
+	}
 	date     = getDate(date.replace('-', "/").replace('-', '/')).getDay();
 	var week = '';
 	switch (date) {
