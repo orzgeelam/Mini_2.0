@@ -31,10 +31,11 @@
     transform: translate(-50%, -50%);
     background-color: #fff;
     border-radius: 10rpx;
-    width: 560rpx;
-    padding-top: 66rpx;
+    width: 500rpx;
+    padding-top: 35rpx;
     text-align: center;
     z-index: 999;
+    overflow: hidden;
 }
 
 .assem_con image {
@@ -54,12 +55,14 @@
 .assem_con .sub_title {
     font-size: 30rpx;
     color: #898989;
+    padding-bottom: 35rpx;
+    padding-top: 5rpx;
 }
 
 .assem_btn view {
-    line-height: 100rpx;
+    line-height: 80rpx;
     text-align: center;
-    font-size: 34rpx;
+    font-size: 28rpx;
 }
 
 .assem_btn {
@@ -73,9 +76,10 @@
 
 .assem_btn button {
     color: #fe4a4a;
-    height: 100rpx;
-    line-height: 100rpx;
-    font-size: 34rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    /* border-top: 1rpx solid #ccc; */
 }
 
 .m-list-flex {
@@ -103,7 +107,7 @@ image {
     border-radius: 4rpx;
     z-index: 999;
     width: 540rpx;
-    padding-bottom: 56rpx;
+    /* padding-bottom: 56rpx; */
 }
 
 .close-img {
@@ -124,13 +128,14 @@ image {
 .bind-con {
     font-size: 28rpx;
     color: #333;
-    font-weight: bold;
-    line-height: 58rpx;
+    font-weight: normal;
+    /* line-height: 58rpx; */
     text-align: center;
-    padding-top: 58rpx;
+    padding-top: 30rpx;
     padding-bottom: 40rpx;
 }
-
+.bind-con view:nth-child(1){padding-top: 0;}
+.bind-con view{padding-top: 10rpx;}
 .bind-btn {
     background-color: #3ec945;
     border-radius: 4rpx;
@@ -153,3 +158,6 @@ image {
     color: #fff;
     padding-left: 16rpx;
 }
+
+
+.bind_tit{padding-top: 30rpx;font-size: 32rpx;color: #000;font-weight: bold;text-align: center;}

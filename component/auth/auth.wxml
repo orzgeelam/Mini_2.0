@@ -1,25 +1,30 @@
 <view wx:if="{{name_show || mobile_show}}" class="zz"></view>
 <view hidden="{{!name_show}}" class="containerc">
-    <view class="assem_con tc">
-        <view class="title">您还未授权</view>
-        <view class="sub_title">您先授权后再进行操作</view>
-        <!-- <image src="/images/assem_img.png" mode="aspectFit"></image> -->
-        <view class="m-list-flex assem_btn">
-            <view bindtap="close" class="m-cell-bd">暂不授权</view>
-            <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo" hover-class="none" class="m-cell-bd">立即授权</button>
-        </view>
-    </view>
+	<view class="assem_con tc">
+		<view class="title">您还未授权</view>
+		<view class="sub_title">您先授权后再进行操作</view>
+		<!-- <image src="/images/assem_img.png" mode="aspectFit"></image> -->
+		<view class="m-list-flex assem_btn">
+			<view bindtap="close" class="m-cell-bd">暂不授权</view>
+			<button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo" hover-class="none" class="m-cell-bd">
+				立即授权
+			</button>
+		</view>
+	</view>
 </view>
 <view hidden="{{!mobile_show}}" class="bind-tc">
-    <view bindtap="closeMobileDialog" class="close-img">
-        <!-- <image src="/images/close_img.png" mode="aspectFit"></image> -->
-    </view>
-    <view class="bind-con">
-        <view>为了更好的为您提供服务</view>
-        <view>请先绑定您的手机号码</view>
-    </view>
-    <view class="m-list-flex assem_btn">
-        <view bindtap="close" class="m-cell-bd">暂不授权</view>
-        <button open-type="getPhoneNumber" lang="zh_CN" bindgetuserinfo="getPhoneNumber" hover-class="none" class="m-cell-bd">立即授权</button>
-    </view>
+	<view bindtap="closeMobileDialog" class="close-img">
+		<!-- <image src="/images/close_img.png" mode="aspectFit"></image> -->
+	</view>
+	<view class="bind_tit">手机号授权</view>
+	<view class="bind-con">
+		<view>为了更好的为您提供服务</view>
+		<view>请先绑定您的手机号码</view>
+	</view>
+	<view class="m-list-flex assem_btn">
+		<view bindtap="close" class="m-cell-bd">暂不授权</view>
+		<button open-type="getPhoneNumber" lang="zh_CN" bindgetphonenumber="getPhoneNumber" hover-class="none" class="m-cell-bd">
+			立即授权
+		</button>
+	</view>
 </view>

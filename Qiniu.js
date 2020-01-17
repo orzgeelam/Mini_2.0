@@ -48,6 +48,7 @@ class Qiniu {
 							var result = {
 								url     : '/' +e.key,
 								full_url: _this.Img_Url + '/' + e.key,
+								tempFilePaths:tempFilePaths
 							};
 							callback(result);
 						}
@@ -66,6 +67,32 @@ class Qiniu {
 					});
 				}
 			},
+		});
+	}
+
+	tempToImg(filePath,cb){
+		// 交给七牛上传
+		qiniuUploader.upload(filePath, function (e) {
+			if (typeof cb == "function") {
+				var result = {
+					url     : '/' +e.key,
+					full_url: _this.Img_Url + '/' + e.key
+				};
+			
+				cb(result);
+			}
+		}, function (error) {
+			console.error('error: ' + JSON.stringify(error));
+		}, {
+			region                : _this.Qiniu_region,
+			uptoken               : _this.Upload_token,
+			domain                : _this.Qiniu_domain,
+			shouldUseQiniuFileName: false,
+			key                   : Img_name(filePath),
+		}, function (progress) {
+			// console.log('上传进度', progress.progress)
+			// console.log('已经上传的数据长度', progress.totalBytesSent)
+			// console.log('预期需要上传的数据总长度', progress.totalBytesExpectedToSend)
 		});
 	}
 }
